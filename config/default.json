@@ -3,9 +3,17 @@
     "corsOrigin": "http://localhost:8080",
     "secret": "supda-dupa-secret",
     "serveAdmin": true,
-    "servePublic": false,
+    "servePublic": true,
     "admin": {
         "name": "admin",
         "password": "admin"
+    },
+    "mongo": {
+        "host": "127.0.0.1",
+        "port": "27017",
+        "database": "alexandria",
+        "poolSize": 10,
+        "user": "alex",
+        "password": "test"
     }
 }

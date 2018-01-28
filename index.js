@@ -7,6 +7,9 @@ const bodyParser = require('body-parser');
 //Initialize Express app
 const app = express();
 
+//Initialize MongoDB conenection pool
+app.use(require('./mongodb.js'));
+
 //Configure Express
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -17,6 +20,9 @@ if (corsOrigin == "*") {
     app.use(cors({origin: corsOrigin}));
 }
 
+//API
+app.get('/users', require('./routes/users/getAll.js'));
+
 //Serve administration UI
 if (config.get('serveAdmin')) {
     app.use('/admin', express.static(path.join(__dirname, 'admin')))
@@ -26,9 +32,6 @@ if (config.get('serveAdmin')) {
 if (config.get('servePublic')) {
     app.use('/', express.static(path.join(__dirname, 'public')))
 }
-
-//API
-app.get('/', (req, res) => res.send('Hello World!'));
 
 //Error handling
 app.use(function (err, req, res, next) {
