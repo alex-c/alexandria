@@ -1,6 +1,6 @@
 function getAllUsers(req, res, next) {
 
-    const users = req.db.collection('users');
+    const users = req.app.db.collection("users");
 
     users.find({}).toArray(function(error, documents) {
         if (error) {
