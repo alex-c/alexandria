@@ -1,2 +1,2 @@
 # alexandria
-A simple node-based headless CMS.
+A simple headless CMS based on Node.js and MongoDB.
