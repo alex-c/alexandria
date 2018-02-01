@@ -20,10 +20,8 @@ if (corsOrigin == "*") {
 //Initialize database connection
 require('./database/mongodb.js')(app);
 
-//API
-app.get('/users', require('./routes/users/getAll.js'));
-app.post('/collections/:collection', require('./routes/collections/create.js'));
-app.get('/collections/:collection', require('./routes/collections/getAll.js'));
+//Expose API
+app.use('/api/v1', require('./routes/v1/index.js'));
 
 //Serve administration UI
 if (config.get('serveAdmin')) {
@@ -41,4 +39,5 @@ app.use(function (err, req, res, next) {
     res.status(500).json({success: false, message: err.message});
 });
 
-app.listen(config.get('port'), () => console.log('Alexandria successfully started and is listening on port ' + config.get('port') + '!'));
+//Start listening
+app.listen(config.get('port'), config.get('host'), () => console.log('Alexandria successfully started and is listening on port ' + config.get('port') + '!'));
