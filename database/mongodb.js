@@ -21,6 +21,7 @@ module.exports = function(app) {
 
         //Expose database to routes through req.app.db
         app.db = client.db(config.get('mongo.database'));
+        console.log("Successfully connected to MongoDB.");
 
     }).catch(function(error) {
         console.log(error);

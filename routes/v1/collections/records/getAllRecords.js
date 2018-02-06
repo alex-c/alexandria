@@ -1,4 +1,4 @@
-function getAll(req, res, next) {
+function getAllRecords(req, res, next) {
 
     const collection = req.app.db.collection("collection_" + req.params.collection);
 
@@ -6,12 +6,9 @@ function getAll(req, res, next) {
         if (error) {
             next(error);
         }
-        res.json({
-            success: true,
-            documents: documents
-        });
+        res.json(documents);
     });
 
 }
 
-module.exports = getAll;
+module.exports = getAllRecords;
