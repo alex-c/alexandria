@@ -3,6 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const config = require('config');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
 //Initialize Express app
 const app = express();
@@ -16,6 +17,7 @@ if (corsOrigin == "*") {
 } else if (corsOrigin != "") {
     app.use(cors({origin: corsOrigin}));
 }
+app.use(morgan('[:method] :url [:status] (:response-time ms)'));
 
 //Initialize database connection
 require('./database/mongodb.js')(app);
