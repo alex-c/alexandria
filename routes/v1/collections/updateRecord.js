@@ -1,4 +1,4 @@
-const updateRecordFromDocument = require('../../../../records/update.js');
+const util = require('./util.js');
 var ObjectId = require('mongodb').ObjectID;
 
 function updateRecord(req, res, next) {
@@ -13,7 +13,7 @@ function updateRecord(req, res, next) {
         if (record == null) {
             res.status(404).end();
         } else {
-            record = updateRecordFromDocument(record, req.body);
+            record = util.updateRecordFromDocument(record, req.body);
             collection.updateOne({_id: recordId}, {$set: record}, function (error, response) {
                 if (error) {
                     next(error);

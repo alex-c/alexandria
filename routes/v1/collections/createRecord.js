@@ -1,10 +1,10 @@
-const createRecordFromDocument = require('../../../../records/create.js');
+const util = require('./util.js');
 
 function createRecord(req, res, next) {
 
     const collection = req.app.db.collection("collection_" + req.params.collection);
 
-    let record = createRecordFromDocument(req.body, "admin");
+    let record = util.createRecordFromDocument(req.body, "admin");
 
     collection.insertOne(record, function (error, response) {
         if (error) {
